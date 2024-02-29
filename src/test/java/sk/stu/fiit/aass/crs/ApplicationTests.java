@@ -1,4 +1,4 @@
-package sk.stu.fiit.aass.centralreservationsystem;
+package sk.stu.fiit.aass.crs;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

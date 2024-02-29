@@ -1,4 +1,4 @@
-package sk.stu.fiit.aass.centralreservationsystem;
+package sk.stu.fiit.aass.crs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
