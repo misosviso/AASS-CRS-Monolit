@@ -1,4 +1,4 @@
-package com.example.firstmicroservice;
+package sk.stu.fiit.login;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
