@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: reservation
+          predicates:
+            - Path=/reservation/
+          uri: localhost:8081
+        - id: login
+          predicates:
+            - Path=/login/
+          uri: localhost:8082
+        - id: register
+          predicates:
+            - Path=/register/
+          uri: localhost:8083
+        - id: internal
+          predicates:
+            - Path=/process/
+          uri: localhost:8080
+
+
+
+  main:
+    web-application-type: reactive
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+#logging:
+#  level:
+#    org.springframework.web.HttpLogging: TRACE
+#    reactor.netty.http.server: DEBUG
+#    reactor.netty.http.client: DEBUG
+
+jwt:
+  secret: VHKJMNnbfhbsjkdbVJHVkhbJBKJBsmfnbngygiyguFYVHJbkjnjnsjdnlkfn
+
+server:
+  port: 8080
+
+authentication:
+  enabled: false
