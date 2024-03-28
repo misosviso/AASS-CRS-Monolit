@@ -1,4 +1,4 @@
-package com.example.firstmicroservice;
+package sk.stu.fiit.register;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
