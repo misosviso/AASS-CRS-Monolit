@@ -1,4 +1,4 @@
-package com.example.firstmicroservice.model;
+package sk.stu.fiit.reservation.model;
 
 public class Reservation {
 

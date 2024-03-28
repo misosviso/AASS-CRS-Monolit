@@ -1,6 +1,6 @@
-package com.example.firstmicroservice.controller;
+package sk.stu.fiit.reservation.controller;
 
-import com.example.firstmicroservice.model.Reservation;
+import sk.stu.fiit.reservation.model.Reservation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
