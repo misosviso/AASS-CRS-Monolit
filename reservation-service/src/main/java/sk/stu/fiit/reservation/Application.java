@@ -1,7 +1,8 @@
 package sk.stu.fiit.reservation;
 
 import com.sun.source.util.TaskEvent;
-import com.sun.source.util.TaskListener;
+import org.camunda.bpm.engine.delegate.DelegateTask;
+import org.camunda.bpm.engine.delegate.TaskListener;
 import org.springframework.boot.SpringApplication;
 import org.camunda.bpm.client.ExternalTaskClient;
 import org.camunda.bpm.client.task.ExternalTaskService;
@@ -22,10 +23,10 @@ public class Application {
 	public TaskListener getTaskListener() {
 		return new TaskListener() {
 			@Override
-			public void finished(TaskEvent e) {
-				System.out.println("########################################################");
-				System.out.println(e);
-				System.out.println("########################################################");
+			public void notify(DelegateTask delegateTask) {
+				System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+				System.out.println(delegateTask.getProcessInstanceId());
+				System.out.println(delegateTask.getName());
 			}
 		};
 	}
@@ -59,6 +60,8 @@ public class Application {
 					externalTaskService.complete(externalTask);
 				})
 				.open();
+
+		client
 	}
 
 }
