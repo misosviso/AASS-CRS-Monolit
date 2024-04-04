@@ -3,6 +3,7 @@ package sk.stu.fiit.reservation;
 import org.springframework.boot.SpringApplication;
 import org.camunda.bpm.client.ExternalTaskClient;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.awt.*;
 import java.net.URI;
@@ -12,6 +13,15 @@ import java.util.logging.Logger;
 @SpringBootApplication
 public class Application {
 	private final static Logger LOGGER = Logger.getLogger(Application.class.getName());
+
+    @Bean
+    public boolean afterSubmit(String totoMiPride) {
+
+        System.out.println("***************************************");
+		System.out.println("totoMiPride: " + totoMiPride);
+        return false;
+        //return configuration;
+    }
 
 	public static void main(String[] args) {
 		ExternalTaskClient client = ExternalTaskClient.create()
