@@ -14,7 +14,7 @@ public class JWTUtil {
     private String secret;
 
     public Claims getALlClaims(String token) {
-        return Jwts.parserBuilder().setSigningKey(secret).build().parseClaimsJws(token).getBody();
+        return Jwts.parserBuilder().setSigningKey(secret.getBytes()).build().parseClaimsJws(token).getBody();
     }
 
     private boolean isTokenExpired(String token ) {

@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Key;
 import java.sql.Date;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -20,12 +21,12 @@ public class LoginController {
     public String getToken() {
         System.out.println("inside auth login");
         return Jwts.builder()
-                .claim("id","ankitha")
-                .claim("role","admin")
+                .claim("id","miso")
+                .claim("role","developer")
                 .setSubject("Test Token")
                 .setIssuedAt(Date.from(Instant.now()))
                 .setExpiration(Date.from(Instant.now().plus(10, ChronoUnit.MINUTES)))
-                .signWith(SignatureAlgorithm.HS256,secret).compact();
+                .signWith(SignatureAlgorithm.HS256,secret.getBytes()).compact();
     }
 
     @PostMapping
@@ -37,7 +38,7 @@ public class LoginController {
                 .setSubject("Test Token")
                 .setIssuedAt(Date.from(Instant.now()))
                 .setExpiration(Date.from(Instant.now().plus(10, ChronoUnit.MINUTES)))
-                .signWith(SignatureAlgorithm.HS256,secret).compact();
+                .signWith(SignatureAlgorithm.HS256,secret.getBytes()).compact();
     }
 
 }

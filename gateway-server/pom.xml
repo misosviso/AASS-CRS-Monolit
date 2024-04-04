@@ -8,10 +8,10 @@
 		<version>2.7.13</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>spring-cloud-gateway-overview</artifactId>
+	<groupId>sk.stu.fiit.gateway</groupId>
+	<artifactId>gateway-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-cloud-gateway-overview</name>
+	<name>gateway-service</name>
 	<description>Sample Spring cloud API gateway repository </description>
 	<properties>
 		<java.version>11</java.version>

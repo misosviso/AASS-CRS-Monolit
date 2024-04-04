@@ -38,6 +38,10 @@ public class GatewayConfig {
                         .and().method("POST")
 //                        .and().readBody(Company.class, s -> true).filters(f -> f.filters(requestFilter, authFilter))
                         .uri("http://localhost:8082"))
+                .route("login", r -> r.path("/login")
+                        .and().method("GET")
+//                        .and().readBody(Company.class, s -> true).filters(f -> f.filters(requestFilter, authFilter))
+                        .uri("http://localhost:8082"))
                 .route("register", r -> r.path("/register")
                         .and().method("POST")
 //

@@ -6,6 +6,9 @@ public class Reservation {
     private String name;
     private String type;
 
+    public Reservation() {
+    }
+
     public Reservation(Integer id, String name, String type) {
         this.id = id;
         this.name = name;
