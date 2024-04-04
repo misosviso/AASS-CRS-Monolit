@@ -23,7 +23,9 @@ public class Application {
 		return new TaskListener() {
 			@Override
 			public void finished(TaskEvent e) {
+				System.out.println("########################################################");
 				System.out.println(e);
+				System.out.println("########################################################");
 			}
 		};
 	}
