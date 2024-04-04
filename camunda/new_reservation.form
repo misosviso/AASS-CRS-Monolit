@@ -1,0 +1,77 @@
+{
+  "components": [
+    {
+      "label": "Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0hjmh8p",
+        "columns": null
+      },
+      "id": "Field_020xss3",
+      "key": "textfield_6ompsc",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Surname",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0vq3bv9",
+        "columns": null
+      },
+      "id": "Field_0uit83m",
+      "key": "textfield_tlsok7",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "values": [
+        {
+          "label": "Value",
+          "value": "value"
+        },
+        {
+          "label": "Value 2",
+          "value": "value2"
+        }
+      ],
+      "label": "Choose doctor",
+      "type": "select",
+      "layout": {
+        "row": "Row_02z03o7",
+        "columns": null
+      },
+      "id": "Field_1bapi7a",
+      "key": "select_qenbc9",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "Choose date",
+      "label": "Date time",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_13393wx",
+        "columns": null
+      },
+      "id": "Field_1hv7ngm",
+      "key": "datetime_pef5ig",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "new_reservation",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.4.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.21.0"
+  },
+  "schemaVersion": 15
+}
