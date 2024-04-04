@@ -1,7 +1,10 @@
 package sk.stu.fiit.reservation;
 
+import com.sun.source.util.TaskEvent;
+import com.sun.source.util.TaskListener;
 import org.springframework.boot.SpringApplication;
 import org.camunda.bpm.client.ExternalTaskClient;
+import org.camunda.bpm.client.task.ExternalTaskService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
@@ -11,19 +14,22 @@ import java.util.logging.Logger;
 
 
 @SpringBootApplication
+//@EnableProcessApplication
 public class Application {
 	private final static Logger LOGGER = Logger.getLogger(Application.class.getName());
 
-    @Bean
-    public boolean afterSubmit(String totoMiPride) {
-
-        System.out.println("***************************************");
-		System.out.println("totoMiPride: " + totoMiPride);
-        return false;
-        //return configuration;
-    }
+	@Bean("loggingListener")
+	public TaskListener getTaskListener() {
+		return new TaskListener() {
+			@Override
+			public void finished(TaskEvent e) {
+				System.out.println(e);
+			}
+		};
+	}
 
 	public static void main(String[] args) {
+
 		ExternalTaskClient client = ExternalTaskClient.create()
 				.baseUrl("http://localhost:8080/engine-rest")
 				.asyncResponseTimeout(10000) // long polling timeout
