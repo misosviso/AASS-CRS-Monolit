@@ -48,21 +48,6 @@
       "validate": {
         "required": true
       }
-    },
-    {
-      "subtype": "date",
-      "dateLabel": "Choose date",
-      "label": "Date time",
-      "type": "datetime",
-      "layout": {
-        "row": "Row_13393wx",
-        "columns": null
-      },
-      "id": "Field_1hv7ngm",
-      "key": "datetime_pef5ig",
-      "validate": {
-        "required": true
-      }
     }
   ],
   "type": "default",

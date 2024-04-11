@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0sl8b18" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.21.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
-  <bpmn:process id="Process_1tn5lww" isExecutable="true">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0sl8b18" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.21.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+  <bpmn:process id="Process_1tn5lww" isExecutable="true" camunda:historyTimeToLive="1">
+    <bpmn:extensionElements />
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_04it8e2</bpmn:outgoing>
     </bpmn:startEvent>
@@ -14,9 +15,10 @@
       <bpmn:outgoing>Flow_0eh4e6j</bpmn:outgoing>
       <bpmn:outgoing>Flow_124c8aw</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_1esllz8" name="Zadanie rezervácie">
+    <bpmn:userTask id="Activity_1esllz8" name="Zadanie rezervácie" camunda:formRef="new_reservation" camunda:formRefBinding="deployment" camunda:assignee="demo">
       <bpmn:extensionElements>
         <zeebe:formDefinition formId="new_reservation" />
+        <camunda:taskListener delegateExpression="customTaskListener" event="complete" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_04it8e2</bpmn:incoming>
       <bpmn:outgoing>Flow_1b2cs03</bpmn:outgoing>
@@ -26,16 +28,26 @@
       <bpmn:outgoing>Flow_1kdjzxn</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_04it8e2" sourceRef="StartEvent_1" targetRef="Activity_1esllz8" />
-    <bpmn:sequenceFlow id="Flow_1b2cs03" sourceRef="Activity_1esllz8" targetRef="Gateway_1rv8n6o" />
-    <bpmn:sequenceFlow id="Flow_0f1h6wl" name="Áno" sourceRef="Gateway_1rv8n6o" targetRef="Activity_0z22kcj" />
-    <bpmn:sequenceFlow id="Flow_07fs4nn" name="Nie" sourceRef="Gateway_1rv8n6o" targetRef="Activity_1g12sxm" />
+    <bpmn:sequenceFlow id="Flow_1b2cs03" sourceRef="Activity_1esllz8" targetRef="Gateway_1rv8n6o">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" />
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0f1h6wl" name="Áno" sourceRef="Gateway_1rv8n6o" targetRef="Activity_0z22kcj">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_07fs4nn" name="Nie" sourceRef="Gateway_1rv8n6o" targetRef="Activity_1g12sxm">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1kdjzxn" sourceRef="Activity_0z22kcj" targetRef="Gateway_05lzczo" />
-    <bpmn:sequenceFlow id="Flow_0eh4e6j" name="Nie" sourceRef="Gateway_05lzczo" targetRef="Activity_1g12sxm" />
-    <bpmn:serviceTask id="Activity_0n1iyxf" name="Informovanie o rezervácií">
+    <bpmn:sequenceFlow id="Flow_0eh4e6j" name="Nie" sourceRef="Gateway_05lzczo" targetRef="Activity_1g12sxm">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">0</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_0n1iyxf" name="Informovanie o rezervácií" camunda:type="external" camunda:topic="charge-card">
       <bpmn:incoming>Flow_05i1mdo</bpmn:incoming>
       <bpmn:outgoing>Flow_1iom9ni</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_124c8aw" name="Áno" sourceRef="Gateway_05lzczo" targetRef="Activity_0h730t9" />
+    <bpmn:sequenceFlow id="Flow_124c8aw" name="Áno" sourceRef="Gateway_05lzczo" targetRef="Activity_0h730t9">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">1</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_13ke0di" name="Rezervácia potvrdená">
       <bpmn:incoming>Flow_1iom9ni</bpmn:incoming>
     </bpmn:endEvent>
@@ -43,13 +55,13 @@
     <bpmn:endEvent id="Event_0czrwon" name="Rezervácia zamietnutá">
       <bpmn:incoming>Flow_0ipa9yy</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Activity_1g12sxm" name="Informovanie o rezervácií">
+    <bpmn:serviceTask id="Activity_1g12sxm" name="Informovanie o rezervácií" camunda:type="external" camunda:topic="charge-card">
       <bpmn:incoming>Flow_07fs4nn</bpmn:incoming>
       <bpmn:incoming>Flow_0eh4e6j</bpmn:incoming>
       <bpmn:outgoing>Flow_0ipa9yy</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0ipa9yy" sourceRef="Activity_1g12sxm" targetRef="Event_0czrwon" />
-    <bpmn:serviceTask id="Activity_0h730t9" name="Zapísanie rezervácie">
+    <bpmn:serviceTask id="Activity_0h730t9" name="write-reservation" camunda:type="external" camunda:topic="charge-card">
       <bpmn:incoming>Flow_124c8aw</bpmn:incoming>
       <bpmn:outgoing>Flow_05i1mdo</bpmn:outgoing>
     </bpmn:serviceTask>
