@@ -8,6 +8,7 @@ import org.camunda.bpm.client.ExternalTaskClient;
 import org.camunda.bpm.client.task.ExternalTaskService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.awt.*;
 import java.net.URI;
@@ -15,7 +16,7 @@ import java.util.logging.Logger;
 
 
 @SpringBootApplication
-//@EnableProcessApplication
+@ComponentScan(basePackages = {"sk.stu.fiit.reservation"})
 public class Application {
 	private final static Logger LOGGER = Logger.getLogger(Application.class.getName());
 
