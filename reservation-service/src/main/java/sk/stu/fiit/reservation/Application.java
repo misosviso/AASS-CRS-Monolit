@@ -21,14 +21,11 @@ public class Application {
 
 	@Bean("loggingListener")
 	public TaskListener getTaskListener() {
-		return new TaskListener() {
-			@Override
-			public void notify(DelegateTask delegateTask) {
-				System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-				System.out.println(delegateTask.getProcessInstanceId());
-				System.out.println(delegateTask.getName());
-			}
-		};
+		return delegateTask -> {
+            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            System.out.println(delegateTask.getProcessInstanceId());
+            System.out.println(delegateTask.getName());
+        };
 	}
 
 	public static void main(String[] args) {
@@ -61,7 +58,6 @@ public class Application {
 				})
 				.open();
 
-		client
 	}
 
 }
