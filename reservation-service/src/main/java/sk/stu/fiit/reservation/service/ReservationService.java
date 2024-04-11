@@ -22,7 +22,7 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
-    public Reservation saveItem(Reservation item){
+    public Reservation saveReservation(Reservation item){
         return reservationRepository.save(item);
     }
 

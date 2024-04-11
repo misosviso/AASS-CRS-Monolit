@@ -1,77 +1,53 @@
 package sk.stu.fiit.reservation;
 
-import com.sun.source.util.TaskEvent;
-import org.camunda.bpm.engine.delegate.DelegateTask;
-import org.camunda.bpm.engine.delegate.TaskListener;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.camunda.bpm.client.ExternalTaskClient;
-import org.camunda.bpm.client.task.ExternalTaskService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import sk.stu.fiit.reservation.models.Reservation;
 import sk.stu.fiit.reservation.service.ReservationService;
 
-import java.awt.*;
-import java.net.URI;
 import java.util.logging.Logger;
-
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"sk.stu.fiit.reservation"})
-public class Application {
+public class Application implements CommandLineRunner {
 	private final static Logger LOGGER = Logger.getLogger(Application.class.getName());
-	@Autowired
-	private static ReservationService  reservationService;
 
-	@Bean("loggingListener")
-	public TaskListener getTaskListener() {
-		return delegateTask -> {
-            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            System.out.println(delegateTask.getProcessInstanceId());
-            System.out.println(delegateTask.getName());
-        };
-	}
+	@Autowired
+	private ReservationService reservationService;
 
 	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
 
+	@Override
+	public void run(String... args) throws Exception {
 		ExternalTaskClient client = ExternalTaskClient.create()
 				.baseUrl("http://localhost:8080/engine-rest")
-				.asyncResponseTimeout(10000) // long polling timeout
+				.asyncResponseTimeout(10000)
 				.build();
 
-		// subscribe to an external task topic as specified in the process
 		client.subscribe("write-reservation")
-				.lockDuration(1000) // the default lock duration is 20 seconds, but you can override this
+				.lockDuration(1000)
 				.handler((externalTask, externalTaskService) -> {
-					// Put your business logic here
-
-//					// Get a process variable
-					String name = externalTask.getVariable("item");
-					String surname = externalTask.getVariable("item");
-					String doctor = externalTask.getVariable("item");
+					String name = externalTask.getVariable("name");
+					String surname = externalTask.getVariable("surname");
+					String doctor = externalTask.getVariable("doctor");
 
 					Reservation reservation = new Reservation();
 					reservation.setName(name);
 					reservation.setSurname(surname);
 					reservation.setDoctor(doctor);
 
-					reservationService.saveItem(reservation);
+					reservationService.saveReservation(reservation);
 
 					LOGGER.info("Writing reservation");
 
-//					try {
-//						Desktop.getDesktop().browse(new URI("https://docs.camunda.org/get-started/quick-start/complete"));
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//
-//					// Complete the task
 					externalTaskService.complete(externalTask);
 				})
 				.open();
-
 	}
-
 }
