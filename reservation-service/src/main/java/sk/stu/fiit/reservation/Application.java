@@ -3,12 +3,15 @@ package sk.stu.fiit.reservation;
 import com.sun.source.util.TaskEvent;
 import org.camunda.bpm.engine.delegate.DelegateTask;
 import org.camunda.bpm.engine.delegate.TaskListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.camunda.bpm.client.ExternalTaskClient;
 import org.camunda.bpm.client.task.ExternalTaskService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import sk.stu.fiit.reservation.models.Reservation;
+import sk.stu.fiit.reservation.service.ReservationService;
 
 import java.awt.*;
 import java.net.URI;
@@ -19,6 +22,8 @@ import java.util.logging.Logger;
 @ComponentScan(basePackages = {"sk.stu.fiit.reservation"})
 public class Application {
 	private final static Logger LOGGER = Logger.getLogger(Application.class.getName());
+	@Autowired
+	private static ReservationService  reservationService;
 
 	@Bean("loggingListener")
 	public TaskListener getTaskListener() {
@@ -43,8 +48,16 @@ public class Application {
 					// Put your business logic here
 
 //					// Get a process variable
-//					String item = externalTask.getVariable("item");
-//					Integer amount = externalTask.getVariable("amount");
+					String name = externalTask.getVariable("item");
+					String surname = externalTask.getVariable("item");
+					String doctor = externalTask.getVariable("item");
+
+					Reservation reservation = new Reservation();
+					reservation.setName(name);
+					reservation.setSurname(surname);
+					reservation.setDoctor(doctor);
+
+					reservationService.saveItem(reservation);
 
 					LOGGER.info("Writing reservation");
 
