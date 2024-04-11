@@ -8,7 +8,7 @@
         "columns": null
       },
       "id": "Field_020xss3",
-      "key": "textfield_6ompsc",
+      "key": "name",
       "validate": {
         "required": true
       }
@@ -21,7 +21,7 @@
         "columns": null
       },
       "id": "Field_0uit83m",
-      "key": "textfield_tlsok7",
+      "key": "surname",
       "validate": {
         "required": true
       }
@@ -44,7 +44,7 @@
         "columns": null
       },
       "id": "Field_1bapi7a",
-      "key": "select_qenbc9",
+      "key": "doctor",
       "validate": {
         "required": true
       }
