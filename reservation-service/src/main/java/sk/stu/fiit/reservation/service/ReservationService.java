@@ -32,6 +32,8 @@ public class ReservationService {
     }
 
     public boolean dateFree(String date) {
+        System.out.println("All: " + reservationRepository.findAll());
+        System.out.println("Filter: " + reservationRepository.findAll().stream().filter(reservation -> Objects.equals(reservation.getDate(), date)));
         return reservationRepository.findAll().stream().noneMatch(reservation -> Objects.equals(reservation.getDate(), date));
     }
 

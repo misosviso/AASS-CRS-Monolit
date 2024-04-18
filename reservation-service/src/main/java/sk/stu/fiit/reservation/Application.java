@@ -49,7 +49,7 @@ public class Application implements CommandLineRunner {
 					boolean free = reservationService.dateFree(date);
 					// Complete the external task with variables if needed
 					Map<String, Object> variables = new HashMap<>();
-					variables.put("free", free); //
+					variables.put("free", String.valueOf(free)); //
 
 					if (free) {
 						reservationService.saveReservation(reservation);
