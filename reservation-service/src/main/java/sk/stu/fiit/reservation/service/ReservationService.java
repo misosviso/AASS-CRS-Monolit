@@ -6,6 +6,7 @@ import sk.stu.fiit.reservation.models.Reservation;
 import sk.stu.fiit.reservation.repository.ReservationRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -31,7 +32,7 @@ public class ReservationService {
     }
 
     public boolean dateFree(String date) {
-        return reservationRepository.findByDate(date).isEmpty();
+        return reservationRepository.findAll().stream().noneMatch(reservation -> Objects.equals(reservation.getDate(), date));
     }
 
     public Reservation confirmReservation(String name) {
