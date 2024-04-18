@@ -38,6 +38,7 @@ public class Application implements CommandLineRunner {
 					String name = externalTask.getVariable("name");
 					String surname = externalTask.getVariable("surname");
 					String doctor = externalTask.getVariable("doctor");
+					String date = externalTask.getVariable("date");
 
 					Reservation reservation = new Reservation();
 					reservation.setName(name);
@@ -45,13 +46,18 @@ public class Application implements CommandLineRunner {
 					reservation.setDoctor(doctor);
 					reservation.setConfirmed(false);
 
+					boolean free = reservationService.dateFree(date);
 					// Complete the external task with variables if needed
 					Map<String, Object> variables = new HashMap<>();
-					variables.put("free", "true"); //
+					variables.put("free", free); //
 
-					reservationService.saveReservation(reservation);
-					LOGGER.info("===Writing reservation===\n\n\n");
+					if (free) {
+						reservationService.saveReservation(reservation);
+						LOGGER.info("===Writing reservation===\n\n\n");
+					}
+
 					externalTaskService.complete(externalTask, variables);
+
 				})
 				.open();
 

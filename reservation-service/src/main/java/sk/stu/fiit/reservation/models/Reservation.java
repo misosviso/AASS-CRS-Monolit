@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDate;
 
 @Entity
 public class Reservation {
@@ -53,11 +52,11 @@ public class Reservation {
         this.doctor = doctor;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -66,7 +65,7 @@ public class Reservation {
 
     private String doctor;
 
-    private LocalDate date;
+    private String date;
 
     private boolean confirmed;
 }

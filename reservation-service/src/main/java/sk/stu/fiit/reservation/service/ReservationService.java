@@ -30,6 +30,10 @@ public class ReservationService {
         return reservationRepository.findById(id);
     }
 
+    public boolean dateFree(String date) {
+        return reservationRepository.findByDate(date).isEmpty();
+    }
+
     public Reservation confirmReservation(String name) {
         List<Reservation> reservations = reservationRepository.findByName(name);
 
