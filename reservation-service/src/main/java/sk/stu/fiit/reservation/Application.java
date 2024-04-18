@@ -45,10 +45,9 @@ public class Application implements CommandLineRunner {
 					reservation.setDoctor(doctor);
 					reservation.setConfirmed(false);
 
-
 					// Complete the external task with variables if needed
 					Map<String, Object> variables = new HashMap<>();
-					variables.put("free", true); //
+					variables.put("free", "true"); //
 
 					reservationService.saveReservation(reservation);
 					LOGGER.info("===Writing reservation===\n\n\n");
