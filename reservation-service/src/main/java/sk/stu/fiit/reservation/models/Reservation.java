@@ -9,6 +9,14 @@ import java.time.LocalDate;
 @Entity
 public class Reservation {
 
+    public boolean isConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(boolean confirmed) {
+        this.confirmed = confirmed;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -59,4 +67,6 @@ public class Reservation {
     private String doctor;
 
     private LocalDate date;
+
+    private boolean confirmed;
 }

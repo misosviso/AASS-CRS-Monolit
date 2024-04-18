@@ -30,18 +30,19 @@ public class ReservationService {
         return reservationRepository.findById(id);
     }
 
-    public Reservation updateReservation(Long id, Reservation updatedReservation) {
-        Optional<Reservation> optionalReservation = reservationRepository.findById(id);
+    public Reservation confirmReservation(String name) {
+        List<Reservation> reservations = reservationRepository.findByName(name);
 
-        if (optionalReservation.isPresent()) {
-            Reservation reservation = optionalReservation.get();
-            reservation.setName(updatedReservation.getName());
+        if (!reservations.isEmpty()) {
+            Reservation reservation = reservations.get(0);
+            reservation.setName(name);
+            reservation.setConfirmed(true);
             // You can update other properties as needed
 
             return reservationRepository.save(reservation);
         } else {
             // Handle the case when the reservation with the given id is not found
-            throw new IllegalArgumentException("Reservation not found with id: " + id);
+            throw new IllegalArgumentException("Reservation not found with id: " + name);
         }
     }
 }

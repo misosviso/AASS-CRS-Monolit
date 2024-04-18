@@ -41,11 +41,21 @@ public class Application implements CommandLineRunner {
 					reservation.setName(name);
 					reservation.setSurname(surname);
 					reservation.setDoctor(doctor);
+					reservation.setConfirmed(false);
 
 					reservationService.saveReservation(reservation);
+					LOGGER.info("===Writing reservation===\n\n\n");
+					externalTaskService.complete(externalTask);
+				})
+				.open();
 
-					LOGGER.info("Writing reservation");
+		client.subscribe("confirm-reservation")
+				.lockDuration(1000)
+				.handler((externalTask, externalTaskService) -> {
+					String name = externalTask.getVariable("name");
 
+					reservationService.confirmReservation(name);
+					LOGGER.info("===Confirm reservation ===\n\n\n");
 					externalTaskService.complete(externalTask);
 				})
 				.open();
