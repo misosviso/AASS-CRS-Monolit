@@ -9,6 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 import sk.stu.fiit.reservation.models.Reservation;
 import sk.stu.fiit.reservation.service.ReservationService;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 @SpringBootApplication
@@ -43,9 +45,14 @@ public class Application implements CommandLineRunner {
 					reservation.setDoctor(doctor);
 					reservation.setConfirmed(false);
 
+
+					// Complete the external task with variables if needed
+					Map<String, Object> variables = new HashMap<>();
+					variables.put("free", true); //
+
 					reservationService.saveReservation(reservation);
 					LOGGER.info("===Writing reservation===\n\n\n");
-					externalTaskService.complete(externalTask);
+					externalTaskService.complete(externalTask, variables);
 				})
 				.open();
 
