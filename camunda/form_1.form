@@ -1,0 +1,69 @@
+{
+  "components": [
+    {
+      "label": "Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1ooi8sb",
+        "columns": null
+      },
+      "id": "Field_1sbw4sg",
+      "key": "textfield_ldrmxn"
+    },
+    {
+      "label": "Surname",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1wvm87c",
+        "columns": null
+      },
+      "id": "Field_115lniv",
+      "key": "textfield_u9tzvp"
+    },
+    {
+      "values": [
+        {
+          "label": "Value",
+          "value": "value"
+        }
+      ],
+      "label": "Choose doctor",
+      "type": "select",
+      "layout": {
+        "row": "Row_1x3ix20",
+        "columns": null
+      },
+      "id": "Field_0vqror1",
+      "key": "select_3fd42"
+    },
+    {
+      "values": [
+        {
+          "label": "20.04.2024",
+          "value": "20.04.2024"
+        },
+        {
+          "label": "21.04.2024",
+          "value": "21.04.2024"
+        }
+      ],
+      "label": "Select",
+      "type": "select",
+      "layout": {
+        "row": "Row_1xyhz0y",
+        "columns": null
+      },
+      "id": "Field_04jnzw4",
+      "key": "select_8i3wel"
+    }
+  ],
+  "type": "default",
+  "id": "form_1",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.21.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.20.0",
+  "schemaVersion": 15
+}
