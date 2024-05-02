@@ -1,6 +1,6 @@
-package com.dxc.di.config;
+package sk.stu.fiit.crs.config;
 
-import com.dxc.di.model.Data;
+import sk.stu.fiit.crs.model.Data;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;

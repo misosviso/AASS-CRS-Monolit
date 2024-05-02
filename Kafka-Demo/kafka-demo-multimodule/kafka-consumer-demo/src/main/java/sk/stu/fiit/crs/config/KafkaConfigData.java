@@ -1,4 +1,4 @@
-package com.dxc.di.config;
+package sk.stu.fiit.crs.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -11,4 +11,5 @@ public class KafkaConfigData
 {
     private String server;
     private String topic;
+    private String groupId;
 }
