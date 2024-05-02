@@ -1,5 +1,7 @@
 package sk.stu.fiit.crs.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,17 +13,20 @@ import sk.stu.fiit.crs.service.ReservationProducerService;
 public class ReservationProducerController {
 
     @Autowired
+    private ObjectMapper objectMapper;
+
+    @Autowired
     private ReservationProducerService reservationProducerService;
 
     @PostMapping("/submitReservation")
-    public String submitReservation(@RequestBody Data reservation) {
-        reservationProducerService.sendWaitingReservation("TEST");
+    public String submitReservation(@RequestBody Data reservation) throws JsonProcessingException {
+        reservationProducerService.sendWaitingReservation(objectMapper.writeValueAsString(reservation));
         return "Reservation submitted successfully!";
     }
 
     @PostMapping("/confirmReservation")
-    public String confirmReservation(@RequestBody Data reservation) {
-        reservationProducerService.sendCompletedReservation("TEST");
+    public String confirmReservation(@RequestBody Data reservation) throws JsonProcessingException {
+        reservationProducerService.sendCompletedReservation(objectMapper.writeValueAsString(reservation));
         return "Reservation submitted successfully!";
     }
 }
