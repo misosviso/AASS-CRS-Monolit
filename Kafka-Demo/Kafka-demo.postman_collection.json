@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "cb92b490-194e-4d45-9f49-f25891ed2c03",
+		"name": "Kafka-demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16881728"
+	},
+	"item": [
+		{
+			"name": "KafkaDemo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"event z postmana\",\r\n    \"number\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/kafka",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"kafka"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

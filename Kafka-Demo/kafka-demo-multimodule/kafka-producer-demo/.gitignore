@@ -1,0 +1,19 @@
+target/
+.idea
+*.iml
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Editor
+.vscode
+.idea
+
+# Generic
+*.log
+*.backup
+
+# Project
+.charts-bin

@@ -1,0 +1,6 @@
+server:
+  port: 8080
+kafka:
+#  server: kafka:9092
+  server: localhost:9092
+  topic: kafka-demo

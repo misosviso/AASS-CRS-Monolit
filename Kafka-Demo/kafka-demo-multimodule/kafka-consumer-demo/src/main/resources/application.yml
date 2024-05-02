@@ -1,0 +1,7 @@
+server:
+  port: 8079
+kafka:
+#  server: kafka:9092
+  server: localhost:9092
+  topic: kafka-demo
+  group-id: group_json1
